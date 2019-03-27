@@ -1,0 +1,22 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+    
+
+	<div class="">
+		<div style="width: 500px;">
+			
+		
+			<div class="panel panel-primary" style="margin: 20px;">
+				<div class="panel-heading"style="background-color:#08676c;">ADD Apssdc Name:</div>
+				<div class="panel-body"style="background-color:#011e3d;">
+					<form class="form-inline" action="{{ url_for('addApssdc_Name')}}" method="POST">
+						  <label for="email" class="mr-sm-2">Enter Apssdc Name:</label>
+						  <input type="text" class="form-control mb-2 mr-sm-2" style="background-color:#011e3d;color:white"name="name" placeholder="EX:CSE" required>
+						  <input type="submit" class="btn btn-primary mb-2" style="background-color:brown;" value="Add Bank">
+					</form>
+				</div>
+			</div>	
+		</div>	
+	</div>
+{% endblock content %}

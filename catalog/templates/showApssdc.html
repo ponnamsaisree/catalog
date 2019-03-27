@@ -1,0 +1,51 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	        <div class="alert alert-success alert-dismissable animated fadeIn">
+	            {% for message in messages %}
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	            <p class="h4"><strong>{{ message }}</strong></p>
+	            {% endfor %}
+	        </div>
+	{% endif %}	    
+{% endwith %}
+{% if 'username' in session %}
+<button type="button" class="btn btn-warning" style="margin: 1px 1px 5px 26px;background-color:brown;border-radius:15px;"><a href="{{url_for('addApssdc_Details',sbname=bit.name)}}" style="text-decoration: none;"><strong>Add New customer</strong></a></button>
+
+{% endif %}
+<div class="row" style="margin: 10px">
+{% for tbe in sbit %}
+
+	<div class="col-sm-4 text-center "style="width:35%">
+		<div class="panel panel-primary">
+			<div class="panel-heading"style="background-color:#08676c;">
+				<h4>{{ tbe.team_name }}</h4>
+			</div>
+			<div class="panel-body text-center;"style="background-color:#011e3d;">
+				<table>
+					<tr>
+					<th>team_name</th>
+					<td>:</td>
+					<td><h5>{{ tbe.team_name }}</h5></td>
+					</tr>
+					<tr><th>description</th><td>:</td><td><h5>{{ tbe.description }}</h5></td></tr>
+					<tr><th>team_count</th><td>:</td><td><h5>{{ tbe.team_count }}</h5></td></tr>
+				
+
+				</table>
+			</div>
+			{% if 'username' in session %}
+			<div class="panel-footer"style="background-color:#2c6f90">
+					<button type="button" class="btn btn-info"style="background-color:green;"><a href="{{ url_for('editTeam_Details',sbid=bit.id,sbename=tbe.team_name) }}"style="text-decoration: none;color:white;">EDIT</a></button>
+					<button type="button" class="btn btn-danger"style="background-color:red;"><a href="{{ url_for('deleteTeam_Details',sbid=bit.id,sbename=tbe.team_name)}}"style="text-decoration: none;color:white;">DELETE</a></button>
+			</div>
+			{% endif %}	
+			
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock content %}
+</div>
